@@ -1,0 +1,333 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+
+
+
+Activity Selection
+
+Given two arrays start[] and finish[], representing the start and finish times of activities. A person can perform only one activity at a time, and an activity can be performed only if its start time is greater than the finish time of the last chosen activity.
+Find the maximum number of activities that can be performed without overlapping.
+
+Examples:  
+    
+    Input: start[] = [1, 3, 0, 5, 8, 5], finish[] = [2, 4, 6, 7, 9, 9]
+    Output: 4
+    Explanation: A person can perform at most four activities. The maximum set of activities that can be performed is {0, 1, 3, 4} (these are the indexes in the start[] and finish[] arrays).
+    Input: start[] = [10, 12, 20], finish[] = [20, 25, 30]
+    Output: 1
+    Explanation: A person can perform at most one activity.
+
+
+    //custom comparator
+    bool compare(const vector<int>& a, const vector<int>& b) {
+        return a[1] < b[1];
+    }
+    
+    int activitySelection(vector<int> &start, vector<int> &finish) {
+    vector<vector<int>> arr;
+ 
+    for (int i = 0; i < start.size(); i++) {
+        arr.push_back({start[i], finish[i]});
+    }
+    
+    sort(arr.begin(), arr.end(), compare);
+    
+    int count = 1;  
+    
+    int j = 0;      
+
+    for (int i = 1; i < arr.size(); i++) {
+       
+       
+        if (arr[i][0] > arr[j][1]) {
+            count++;
+            
+            j = i;  
+        }
+    }
+
+    return count;
+}
+    
+
+
+/*
+
+Longest Substring Without Repeating Characters
+
+
+Given a string s having lowercase characters, find the length of the longest substring without repeating characters. 
+Examples:
+Input: s = "aaa"
+Output: 1
+Explanation: The longest substring without repeating characters is "a"
+Input: s = "abcdefabcbb"
+Output: 6
+Explanation: The longest substring without repeating characters is "abcdef".
+
+
+int main()
+{
+    string s = "abcdefabcbb";
+    int n = s.size();
+    int res = 0;
+    
+    bool vis[n] = {false};
+    
+    for (int j = i; j < n; j++){
+        if (vis[s[j] - 'a'] == true)
+                break;
+        else
+        {
+            res = max(res, j - i + 1);
+            vis[s[j] - 'a'] = true;
+        }
+    }
+            
+            
+    
+    
+    
+}
+
+*/
+
+
+/*
+
+Smallest window containing 0, 1 and 2
+
+Given a string S of size N consisting of the characters 0, 1 and 2, the task is to find the length of the smallest substring of string S that contains all the three characters 0, 1 and 2. If no such substring exists, then return -1.
+
+
+Examples:
+Input: S = "01212"
+Output: 3
+Explanation: The substring 012 is the smallest substring that contains the characters 0, 1 and 2.
+Input:  S = "12121"
+Output: -1
+Explanation:  As the character 0 is not present in the string S, therefore no substring containing all the three characters 0, 1 and 2 exists. Hence, the answer is -1 in this case.
+
+*/
+
+
+
+/*
+
+
+TC: O(n), SC: O(1)
+
+   for (int i = 0; i < S.length(); i++) {
+        if (S[i] == '0') {
+            zero = true;
+            zeroindex = i;
+        }
+        else if (S[i] == '1') {
+            one = true;
+            oneindex = i;
+        }
+        else if (S[i] == '2') {
+            two = true;
+            twoindex = i;
+        }
+         if (zero and one and two)
+            res = min(res,
+                      max({ zeroindex, oneindex, twoindex })
+                          - min({ zeroindex, oneindex, twoindex }));
+    }
+    
+  */     
+
+
+
+
+
+
+
+/*
+
+Check if Permutation of Pattern is Substring
+
+Given two strings txt and pat having lowercase letters, the task is to check if any permutation of pat is a substring of txt.
+Input: txt = "programming", pat = "rain"
+Output: false
+Explanation: No permutation of "rain" exists as a substring in "programming".
+
+*/
+
+
+/*
+
+bool check(vector<int> &freq) {
+	for(int i = 0; i < MAX_CHAR; i++) {
+    	if(freq[i] != 0)
+            return false;
+    }
+    return true;
+}
+
+
+
+
+bool search(string &txt, string &pat) {
+    
+    int n = txt.length();
+    int m = pat.length();
+  
+    vector<int> freq(MAX_CHAR, 0);
+    
+    for(int i = 0; i < m; i++) {
+        
+    	freq[txt[i] - 'a'] += 1;
+        freq[pat[i] - 'a'] -= 1;
+    }
+    
+    
+    if(check(freq))
+        return true;
+        
+        
+        
+      for (int i = m; i < n; i++) 
+      {
+                freq[txt[i] - 'a'] += 1;
+
+                freq[txt[i - m] - 'a'] -= 1;
+                
+                if (check(freq))
+                    return true;
+            
+      }
+      
+      return false;
+}
+
+*/
+
+
+/*
+
+Pair with the given product
+
+Given an unsorted array and an integer x, the task is to find if there exists a pair of elements in the array whose product is x. 
+
+Examples: 
+
+Input: arr[] = [5, 20, 3, 2, 50, 80], x = 100
+Output: Yes
+Explanation: There are multiple such pairs: {5, 20} and {2, 50}.
+Input: arr[] = [90, 70, 20, 80, 50], x = 42
+Output: No
+Explanation: No such pair exists.
+
+1- Brute Force: O(n^2)
+2- TC: O(nlogn) - sorting with 2 pointer appraoch.
+3 - Optimised: TC: O(n), SC: O(n)
+ 
+*/
+
+/*
+
+int main() {
+
+    int a[] = {5, 20, 3, 2, 50, 80};
+    int x = 100;
+    int n = sizeof(a)/sizeof(a[0]);
+    int flag = 0;
+    string ans = "No";
+    
+    unordered_set<int> s;
+    
+    for(int i=0; i<n; i++)
+    {
+        int y = x/a[i];
+        
+        if(s.find(y) != s.end())
+        {
+            ans = "Yes";
+            break;
+            
+        }
+        
+        s.insert(a[i]);
+    }
+    
+    cout << ans;
+}
+*/
+
+
+/*
+
+int main() {
+
+    int a[] = {5, 20, 3, 2, 50, 80};
+    int x = 500;
+    int n = sizeof(a)/sizeof(a[0]);
+    int flag = 0;
+    string ans = "No";
+    
+    sort(a, a+n);
+    
+    int l = 0, r = n-1;
+    
+    while(l < r)
+    {
+        int pro = a[l]*a[r];
+        
+        if(pro == x)
+        {
+            ans = "Yes";
+            break;
+        }
+        else if(pro > x)
+        {
+            r--;
+        }
+        else
+        {
+            l++;
+        }
+    }
+    
+    cout << ans;
+}
+*/
+
+
+
+
+/*
+
+int main() {
+
+    int a[] = {5, 20, 3, 2, 50, 80};
+    int x = 100;
+    int n = sizeof(a)/sizeof(a[0]);
+    int flag = 0;
+    
+    for(int i=0; i<n; i++)
+    {
+        for(int j=i+1; j<n; j++)
+        {
+            if(a[i] * a[j] == x)
+            {
+                flag = 1;
+                break;
+            }
+        }
+        
+        if(flag == 1)
+        {
+            cout << "Yes";
+            break;
+        }
+    }
+    
+    if(flag == 0)
+    {
+        cout << "No";
+    }
+}
+*/
