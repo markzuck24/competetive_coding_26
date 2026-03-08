@@ -1,0 +1,373 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+/*
+
+Maximum Consecutive Ones After Flipping Zeroes
+
+Given a binary array arr[] and an integer k, find the maximum length of a subarray containing all ones after flipping at most k zeroes to 1's.
+Examples: 
+Input: arr[] = [1, 0, 0, 1, 1, 0, 1, 0, 1, 1, 1], k = 2
+Output: 8
+Explanation: By flipping the zeroes at index 5 and 7, we get the longest subarray from index 3 to 10 containing all 1's.
+Input: arr[] = [1, 0, 0, 1, 0, 1, 0, 1], k = 2
+Output: 5
+ Explanation: By flipping the zeroes at indices 4 and 6, we get the longest subarray from index 3 to 7 containing all 1's.
+ 
+*/
+
+
+int main()
+{
+     int res = 0;
+     int arr[] = {1, 0, 0, 1, 0, 1, 0, 1};
+     int k = 2;
+     int n = sizeof(arr)/sizeof(arr[0]);
+     
+     for(int i = 0; i < n; i++) {
+        
+        int cnt = 0;
+        
+        for(int j = i; j < n; j++) 
+        {
+            if(arr[j] == 0)
+                cnt++;
+                
+                
+            if(cnt <= k)
+                res = max(res, (j - i + 1));
+        }
+     }
+     
+     cout << res << endl;
+}
+
+/*
+
+Maximum Circular Subarray Sum
+
+Given a circular array arr[], find the maximum sum of any non-empty subarray. A circular array allows wrapping from the end back to the beginning.
+Note: A subarray may wrap around the end and continue from the beginning, forming a circular segment.
+Examples: 
+Input: arr[] = [8, -8, 9, -9, 10, -11, 12]
+Output: 22
+Explanation: The circular subarray [12, 8, -8, 9, -9, 10] gives the maximum sum, which is 22.
+
+
+Input: arr[] = [4, -1, -2, 3]
+Output: 7
+Explanation: The circular subarray [3, 4] gives the maximum sum of 7.
+
+
+Input: arr[] = [5, -2, 3, 4]
+Output: 12
+Explanation: The circular subarray [3, 4, 5] gives the maximum sum of 12.
+*/
+
+/*
+//TC: O(n^2)
+int main()
+{
+    for(int i = 0; i < n; i++) {
+        
+        int sum = 0;
+        
+        for(int j = 0; j < n; j++) {
+            
+            int x = (i + j) % n;
+            sum = sum + arr[x];
+            
+            res = max(res, sum);
+        }
+    }
+    
+    
+}
+*/
+
+
+
+/*
+
+Smallest Missing Positive Number
+
+
+Given an unsorted array arr[] with both positive and negative elements, find the smallest positive number missing from the array.
+
+Examples:
+Input: arr[] = [2, -3, 4, 1, 1, 7]
+Output: 3
+Explanation: 3 is the smallest positive number missing from the array.
+Input: arr[] = [5, 3, 2, 5, 1]
+Output: 4
+Explanation: 4 is the smallest positive number missing from the array.
+Input: arr[] = [-8, 0, -1, -4, -3]
+Output: 1
+ Explanation: 1 is the smallest positive number missing from the array.
+ 
+ 
+ 1- Brute force:
+ 
+ 
+ 
+    int n = sizeof(a)/sizeof(a[0]);
+    
+    sort(a, a+n);
+    int res = 1;
+    for (int i = 0; i < n; i++) {
+     
+     if (arr[i] == res) 
+            res++;    
+        
+        
+     else if (arr[i] > res) 
+            break;
+            
+    }
+ 
+ */
+ 
+/*
+Find an equal point in a string of brackets
+
+Given a string of brackets, the task is to find an index k which decides the number of opening brackets is equal to the number of closing brackets. 
+The string must be consists of only opening and closing brackets i.e. '(' and ')'.
+An equal point is an index such that the number of opening brackets before it is equal to the number of closing brackets from and after.
+If multiple such points exist then return the first valid index and if no such index exists then return -1.
+
+Examples:  
+Input: str = "(())))("
+Output:   4
+Explanation: After index 4, string splits into (()) and ))(. The number of opening brackets in the first part is equal to the number of closing brackets in the second part.
+
+
+Input: str = "))"
+Output: -1
+Explanation: NO such index exists such that the count of opening brackets before that is equal to the count of closing brackets from and after that.
+
+
+1- Brute Force: O(n^2)
+2 - TC: O(n), sc: O(1)
+*/
+
+
+/*
+
+int main()
+{
+    string s = "(())(";
+    
+    int n = s.length();
+    int ans = -1;
+    
+    int openCnt = 0, closeCnt = 0;
+     
+    for (int i = 0; i < n; i++){
+        if (s[i] == ')')
+             closeCnt++;
+    }
+    
+    
+    for (int i = 0; i < n; i++) {
+        
+        if (openCnt == closeCnt) 
+            return i;
+            
+        if(s[i] == '(')
+        {
+            openCnt++;
+        }
+        
+        if(s[i] == ')')
+        {
+         closeCnt--;   
+        }
+        
+    }
+        
+        
+        
+    
+     
+     
+    for(int i=0; i<n; i++)
+    {
+        int open = 0, close = 0;
+        
+        
+    }
+    
+    cout << ans << endl;
+}
+*/
+
+/*
+
+int main()
+{
+    string s = "(())(";
+    
+    int n = s.length();
+    int ans = -1;
+    
+    for(int i=0; i<n; i++)
+    {
+        int open = 0, close = 0;
+        
+        for(int j=0; j<i; j++)
+        {
+            if(s[j] == '(')
+            {
+                open++;
+            }
+        }
+        
+        
+        for(int j=i; j<n; j++)
+        {
+            if(s[j] == ')')
+            {
+                close++;
+            }
+        }
+        
+        if(open == close)
+        {
+            ans = i;
+            break;
+        }
+    }
+    
+    cout << ans << endl;
+}
+*/
+
+
+
+
+/*
+
+1- Isomorphic Strings Check
+
+Given two strings s1 and s2 of equal length, consisting only of lowercase English letters, determine if they are isomorphic.
+Two strings are isomorphic if characters in s1 can be replaced to get s2 such that:
+
+Each character in s1 maps to a unique character in s2.
+
+The mapping is consistent throughout the string.
+The order of characters is preserved.
+
+Input: s1 = "aab", s2 = "xxy"
+Output: true
+Explanation: Each character in s1 can be consistently mapped to a unique character in s2 (a → x, b → y).
+
+
+Input: s1 = "aab", s2 = "xyz"
+Output: false
+Explanation: Same character 'a' in s1 maps to two different characters 'x' and 'y' in s2.
+
+
+Input: s1 = "abc", s2 = "xxz"
+Output: false
+Explanation: Two different characters 'a' and 'b' in s1 maps with same character 'x' in s2.
+
+
+1- Brute Force: TC: O(n^2)
+2- TC: O(n), SC: O(1)
+*/
+
+/*
+
+int main()
+{
+    unordered_map<char, char> m1;
+    unordered_set<char> s1;
+    
+    string s1 = "aab";
+    string s2 = "xzy";
+    
+    string ans = "Yes";
+    int flag = 1;
+    
+    int n = s1.length();
+    
+    for(int i=0; i<n; i++)
+    {
+        char c1 = s1[i], c2 = s2[i];
+        
+         if(m1.find(c1) != m1.end())
+         {
+             if(m1[c1] != c2)
+             {
+                 return false;
+             }
+         }
+         else
+         {
+             if(s1.find(c2) != s1.end())
+             {
+                 return false;
+             }
+             
+             m1[c1] = c2;
+             s1.insert(c2);
+         }
+         
+         
+    }
+    
+    return false;
+   
+    
+}
+
+*/
+
+
+/*
+int main()
+{
+    string s1 = "aab";
+    string s2 = "xzy";
+    
+    string ans = "Yes";
+    int flag = 1;
+    
+    int n = s1.length();
+    
+    for(int i=0; i<n; i++)
+    {
+        char c1 = s1[i];
+        char c2 = s2[i];
+        
+        for(int j=0; j<n; j++)
+        {
+            if(s1[j] == c1 && s2[j] != c2)
+            {
+                ans = "No";
+                flag = 0;
+                break;
+            }
+            
+            if(s2[j] == c2 && s1[j] != c1)
+            {
+                ans = "No";
+                flag = 0;
+                break;
+            }
+        }
+        
+        if(flag == 0)
+        {
+            break;
+        }
+        
+        
+    }
+    
+    cout << ans << endl;
+    
+    
+}
+
+*/
