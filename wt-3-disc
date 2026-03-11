@@ -1,0 +1,564 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+HW
+
+int main() {
+ int arr[]={1,2,3,4,5};
+ int n=5;
+ 
+ for(int i=0;i<n-2;i++){
+     int temp=arr[i];
+     arr[i]=arr[i+2];
+     arr[i+2]=temp;
+ }
+ 
+ int result=0;
+ 
+ for(int i=0;i<n;i++)
+    result=result*10+arr[i];
+ 
+ cout<<result;
+}
+
+
+
+int main() {
+ int arr[]={2,3,4,5,6};
+ int n=5;
+ for(int i=0;i<n;i++){
+     if(arr[i]%2==0){
+     for(int j=i;j<n-1;j++)
+        arr[j]=arr[j+1];
+     n--;
+     i--;
+     }
+ }
+ 
+ int sum=0;
+ 
+ for(int i=0;i<n;i++)
+     sum+=arr[i];
+ 
+ cout<<sum;
+}
+
+
+
+int main() {
+ int arr[]={2,4,6,8};
+ int total=0;
+ for(int i=0;i<4;i++){
+     total+=arr[i];
+     
+     if(total%3==0)
+        continue;
+     
+     total+=1;
+ }
+ cout<<total;
+}
+
+
+
+
+int main() {
+ int arr[] = {1,2,1,3,2};
+ int n=5;
+ 
+ for(int i=0;i<n;i++){
+     int count=0;
+     for(int j=0;j<n;j++)
+        if(arr[i]==arr[j])
+     
+     count++;
+     if(count>1)
+        arr[i]=0;
+ }
+ 
+ int total=0;
+ 
+ for(int i=0;i<n;i++)
+    total+=arr[i];
+ 
+ cout<<total;
+}
+
+
+/*
+
+int main() {
+ string s = "abacaba";
+ int count = 0;
+ 
+ for(int i = 0; i < s.length(); i++) 
+ {
+     if(s[i] == 'a') {
+        s.erase(i, 1);
+         count++;
+         i--;
+    }
+ }
+ 
+ cout << count << " " << s;
+}
+*/
+
+
+/*
+
+int main() 
+{
+ int arr[] = {1,3,5,7,9};
+ int n=5;
+ 
+ for(int i=0;i<n-1;i++)
+ {
+     if(arr[i]%2 !=0 && arr[i+1]%2 != 0)
+     {
+         int temp=arr[i];
+         arr[i]=arr[i+1];
+         arr[i+1]=temp;
+         i++;
+     }
+ }
+ 
+ int sum=0;
+ 
+ for(int i=0;i<n;i++)
+ {
+     sum+=arr[i];
+     cout << arr[i] << " ";
+ }
+    
+ 
+ cout<<sum;
+}
+*/
+
+
+/*
+int main() {
+ string s = "abcd";
+ int total = 0;
+ for(int i = 0; i < s.length(); i++) 
+ {
+     for(int j = i+1; j < s.length(); j++) 
+     {
+        total += (s[j] - s[i]);
+    }
+ }
+ cout << total;
+}
+*/
+
+
+/*
+Bonus: HW - study in detail
+
+int main() {
+ int x = 5;
+ int y = 3;
+ int total = 0;
+ 
+ for(int i = 0; i < 2; i++) 
+ {
+     
+     if((x & y) > 0)
+         total += x ^ y;
+     else
+        total += x | y;
+     
+     x >>= 1;
+ }
+ cout << total;
+}
+
+*/
+
+
+/*
+
+int main() {
+ string s = "aaaa";
+ int total = 0;
+ for(int i = 0; i < s.length(); i++) 
+ {
+     for(int j = i; j < s.length(); j++) 
+     {
+        string sub = s.substr(i, j-i+1);
+        if(sub.length() % 2 == 0)
+            total += sub.length();
+    }
+ }
+ cout << total;
+}
+*/
+
+
+/*
+
+int main() {
+ int x = 1;
+ int y = 2;
+ int total = 0;
+ 
+ if(++x > 1 || y++ > 2)
+     total += x + y;
+ 
+ if(x++ > 2 && ++y > 3)
+    total += x * y;
+ 
+ cout << total;
+
+    
+}
+
+*/
+
+/*
+
+int main() {
+ int a = 1, b = 2, c = 3;
+ int total = 0;
+ 
+ for(int i = 0; i < 3; i++) 
+ {
+     total += a * b - c;
+     a++;
+     b += a;
+     c += b;
+     
+     cout << a << b << c << endl;
+ }
+ cout << total;
+}
+*/
+
+
+
+
+/*
+
+int main() {
+ int x = 2;
+ int y = 3;
+ int total = 0;
+ 
+ for(int i = 0; i < 3; i++) 
+ {
+     
+     if(x++ > 1 && ++y < 6)
+         total += x + y;
+     else
+        total -= x - y;
+ 
+     
+ }
+ 
+ cout << total;
+}
+*/
+
+
+/*
+
+int main() {
+ int n = 8;
+ int count = 0;
+     for(int i = 1; i <= n; i++) 
+     {
+         if(n % i == 0) 
+         {
+             for(int j = 1; j <= i; j++) 
+             {
+                if(i % j == 0)
+                    count++;
+         }
+     }
+}
+ cout << count;
+}
+*/
+
+
+/*
+
+int main() {
+ string s = "ababa";
+ int count = 0;
+ 
+ for(int i = 1; i < s.length(); i++) 
+ {
+     string pref = s.substr(0,i);
+     string suff = s.substr(s.length()-i,i);
+     
+     cout << pref << " " << suff << endl;
+     if(pref == suff)
+         count += i;
+ 
+ }
+ 
+ cout << count;
+}
+*/
+
+
+/*
+
+int main() {
+ int total = 0;
+ string s = "abcde";
+ 
+ for(int i = 0; i < s.length(); i++) 
+ {
+     
+     for(int j = s.length()-1; j >= i; j--) 
+     {
+         if(i % 2 == 0)
+            total += (s[j] - 'a');
+        else
+            total -= (s[j] - 'a');
+     }
+ }
+ 
+ cout << total;
+
+    
+}
+*/
+
+
+
+/*
+
+int main() {
+ string s = "level";
+ int score = 0;
+ 
+ for(int i = 0; i < s.length(); i += 2) 
+ {
+     if(s[i] == s[s.length()-1-i])
+        score += i;
+     else
+        score -= i;
+ }
+ 
+ cout << score;
+}
+*/
+
+
+/*
+
+int main() 
+{
+ int total = 0;
+ 
+ for(int i = 1; i <= 4; i++) {
+ 
+     if(i % 2 == 0)
+        total = total * 2 + i;
+     else
+        total += i;
+        
+    cout << total << endl;
+ }
+ 
+ cout << total;
+}
+
+*/
+
+
+/*
+
+int main() {
+ int n = 2034;
+ int result = 0;
+ 
+ while(n > 0) 
+ {
+     int d = n % 10;
+     
+     if(d % 2 == 0)
+        result = result * 10 + d;
+     
+     n /= 10;
+ }
+ cout << result;
+}
+*/
+
+
+/*
+
+int main() {
+ int total = 0;
+ int prev = 1;
+ 
+ for(int i = 2; i <= 5; i++) {
+     
+     int diff = i - prev;
+     total += diff;
+     prev = i;
+    
+     
+ }
+ cout << total;
+}
+*/
+
+
+
+
+/*
+
+int main() {
+ string s = "aBcDeF";
+ int score = 0;
+ 
+ for(int i = 0; i < s.length(); i++) 
+ {
+     if(i % 2 == 0) 
+     {
+        if(s[i] >= 'a' && s[i] <= 'z')
+            score += 2;
+        else
+            score--;
+    }
+     else 
+     {
+     if(s[i] >= 'A' && s[i] <= 'Z')
+        score += 3;
+     else
+        score -= 2;
+     }
+ }
+ cout << score;
+}
+
+*/
+
+
+/*
+
+int main() {
+ int i = 1;
+ int total = 0;
+ 
+ while(i <= 8) 
+ {
+     total += i;
+     
+     if(i % 3 == 0)
+         i += 2;
+     else
+        i++;
+        
+    cout << i << endl;
+ }
+ 
+ cout << total;
+}
+*/
+
+
+
+/*
+
+int main() {
+    
+ string s = "abcba";
+ int score = 0;
+ 
+ for(int i = 0; i < s.length(); i++) 
+ {
+    if(s[i] == s[s.length()-1-i])
+        score += i;
+    else
+        score -= 1;
+    
+    cout << score << " ";
+ }
+ 
+ cout << score;
+}
+*/
+
+
+
+/*
+
+int main() 
+{
+    
+ int x = 5;
+ int y = 10;
+ int count = 0;
+ 
+ if(x > 3 && ++y > 10)
+     count += y;
+     
+ if(x < 3 || --y > 9)
+    count += y;
+ 
+ cout << y << endl;
+ cout << count;
+
+    
+}
+
+*/
+
+
+
+/*
+int main() 
+{
+ int sum = 0;
+ 
+ for(int i = 1; i <= 3; i++) 
+ {
+     int temp = i;
+     
+     for(int j = 1; j <= 3; j++)
+         temp += j;
+         
+    sum += temp;
+    cout << temp << " " << sum << endl;
+    
+     
+ }
+     
+    cout << sum;
+ return 0;
+}
+
+*/
+
+
+/*
+
+int main() {
+ int x = 3;
+ int y = 0;
+ 
+ for(int i = 1; i <= 4; i++) {
+     if(x % 2 == 0)
+        y += x;
+     else
+        y -= i;
+     
+     x++;
+     cout << y << endl;
+ }
+ 
+ cout << y;
+ return 0;
+}
+
+
+// dry run: 
+
+*/
